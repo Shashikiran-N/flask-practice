@@ -1,4 +1,4 @@
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, abort, redirect
 from markupsafe import escape
 
 
@@ -30,9 +30,13 @@ def return_int_variable(post_id):
 
 
 # post decorator can be used to specify HTTP Methods
+# use abort with status codes to abort the process
 @app.route("/loginPost")
 def login():
-    return f"<h1>Login Successful - POST</h1>"
+    # return f"<h1>Login Successful - POST</h1>"
+    # abort(403)
+    # redirect redirects the request to mentioned method name
+    return redirect(url_for('login_get'))
 
 
 @app.route("/loginGet", methods=['GET', 'POST'])
